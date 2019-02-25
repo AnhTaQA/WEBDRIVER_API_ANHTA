@@ -27,7 +27,7 @@ public class Topic01_CheckEnvironment {
 	  String homePageURL = driver.getCurrentUrl();
 	  Assert.assertEquals(homePageURL, "http://live.guru99.com/");
 	  
-	  
+	  // check intergration between Slack and Github
   }
   @Test
   public void TC_02_CheckTitle() {
