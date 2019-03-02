@@ -63,7 +63,7 @@ public class Topic01_Css_Xpath_Exercise{
 	  driver.findElement(By.id("send2")).click();
 //		  Step 05 - Verify error message xuất hiện:  Please enter a valid email address. For example johndoe@domain.com.
 	  Thread.sleep(1000); 
-	  String Email_message = driver.findElement(By.id("email")).getText();
+	  String Email_message = driver.findElement(By.id("advice-validate-email-email")).getText();
 	  Assert.assertEquals(Email_message, "Please enter a valid email address. For example johndoe@domain.com.");
 	  
 	 
@@ -82,7 +82,7 @@ public class Topic01_Css_Xpath_Exercise{
 	  driver.findElement(By.id("send2")).click();
 	  Thread.sleep(1000); 
 	//	 Step 05 - Verify error message xuất hiện: Please enter 6 or more characters without leading or trailing spaces.
-	  String Pass_message = driver.findElement(By.id("advice-required-entry-pass")).getText();
+	  String Pass_message = driver.findElement(By.id("advice-validate-password-pass")).getText();
 	  Assert.assertEquals(Pass_message, "Please enter 6 or more characters without leading or trailing spaces.");
 	  
 	
