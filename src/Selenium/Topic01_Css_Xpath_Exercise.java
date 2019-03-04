@@ -106,6 +106,30 @@ public class Topic01_Css_Xpath_Exercise{
 	  Assert.assertEquals(Error_message, "Invalid login or password.");
 	  Thread.sleep(3000);
   }
+  @Test
+  public void TC_05_Sign_up() throws Exception {
+	System.out.println("Create an account");
+    driver.findElement(By.xpath("//a[@title='My Account']/ancestor::div[@class='footer']")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.xpath("//span[text()='Create an Account']")).click();
+    Thread.sleep(500);
+    driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys("Anh");
+    driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys("Ta");
+ 
+    driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys("anhta1@yopmail.com");
+    driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Quynhanh2016");
+    driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys("Quynhanh2016");
+    driver.findElement(By.xpath("//button[@title='Register']")).click();
+    String Verify_message = driver.findElement(By.xpath("//li[@class='success-msg']")).getText();
+    Assert.assertEquals(Verify_message, "Thank you for registering with Main Website Store.");
+    driver.findElement(By.xpath("//span[(text()='Account')]/preceding-sibling::span")).click();
+    Thread.sleep(500);
+    driver.findElement(By.xpath("//a[@title='Log Out']")).click();
+    Thread.sleep(7000);
+    String title = driver.getTitle();
+    Assert.assertEquals(title, "Home page");
+    
+  }
   @AfterTest
   public void afterTest() {
 	  driver.quit();
