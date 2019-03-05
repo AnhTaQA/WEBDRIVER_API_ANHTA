@@ -115,8 +115,8 @@ public class Topic01_Css_Xpath_Exercise{
     Thread.sleep(500);
     driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys("Anh");
     driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys("Ta");
- 
-    driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys("anhta1@yopmail.com");
+    String Random_email = "Test"+randomNumber()+"@gmail.com";
+	driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys(Random_email);
     driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Quynhanh2016");
     driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys("Quynhanh2016");
     driver.findElement(By.xpath("//button[@title='Register']")).click();
@@ -130,7 +130,11 @@ public class Topic01_Css_Xpath_Exercise{
     Assert.assertEquals(title, "Home page");
     
   }
-  @AfterTest
+  private String randomNumber() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@AfterTest
   public void afterTest() {
 	  driver.quit();
   }
