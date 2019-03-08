@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 
 
-public class Topic01_CSSXpathExercise{
+public class Topic_02_Practice_Locate_Element{
 	WebDriver driver;
 	
  @BeforeTest

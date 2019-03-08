@@ -1,6 +1,7 @@
 package Selenium;
 
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ import org.testng.annotations.Test;
 
 public class Topic01_Css_Xpath_Exercise{
 	WebDriver driver;
+	String Random_email = "Test"+randomNumber()+"@gmail.com";
 	
 	
  @BeforeTest
@@ -110,12 +112,11 @@ public class Topic01_Css_Xpath_Exercise{
   public void TC_05_Sign_up() throws Exception {
 	System.out.println("Create an account");
     driver.findElement(By.xpath("//a[@title='My Account']/ancestor::div[@class='footer']")).click();
-    Thread.sleep(2000);
+    
     driver.findElement(By.xpath("//span[text()='Create an Account']")).click();
-    Thread.sleep(500);
+   
     driver.findElement(By.xpath("//input[@id='firstname']")).sendKeys("Anh");
     driver.findElement(By.xpath("//input[@id='lastname']")).sendKeys("Ta");
-    String Random_email = "Test"+randomNumber()+"@gmail.com";
 	driver.findElement(By.xpath("//input[@id='email_address']")).sendKeys(Random_email);
     driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Quynhanh2016");
     driver.findElement(By.xpath("//input[@id='confirmation']")).sendKeys("Quynhanh2016");
@@ -123,16 +124,17 @@ public class Topic01_Css_Xpath_Exercise{
     String Verify_message = driver.findElement(By.xpath("//li[@class='success-msg']")).getText();
     Assert.assertEquals(Verify_message, "Thank you for registering with Main Website Store.");
     driver.findElement(By.xpath("//span[(text()='Account')]/preceding-sibling::span")).click();
-    Thread.sleep(500);
     driver.findElement(By.xpath("//a[@title='Log Out']")).click();
-    Thread.sleep(7000);
-    String title = driver.getTitle();
-    Assert.assertEquals(title, "Home page");
+   Assert.assertTrue(driver.findElement(By.xpath("//img[contains(@src, 'logo.png')]")).isDisplayed());
+
+   
     
   }
-  private String randomNumber() {
-	// TODO Auto-generated method stub
-	return null;
+  private int randomNumber() {
+	  Random random = new Random();
+	  int randomNumber = random.nextInt(99999);
+	  System.out.println("random number" + randomNumber);
+	return randomNumber;
 }
 @AfterTest
   public void afterTest() {
