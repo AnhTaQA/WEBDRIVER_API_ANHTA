@@ -33,7 +33,7 @@ public class Topic08_Handle_DropdownList{
 	 driver.manage().window().maximize();
 	 
 	  }
-//  @Test
+  @Test
   public void TC_01_HTMLDropDownList() {
 	  driver.get("https://daominhdam.github.io/basic-form/index.html");
 	  WebElement jobRole01 = driver.findElement(By.xpath("//select[@id= 'job1']"));
@@ -50,7 +50,7 @@ public class Topic08_Handle_DropdownList{
 	  Assert.assertEquals(5, jobRoleSelect.getOptions().size());
 	  
 	    }
-//  @Test
+ @Test
   public void TC_02_JqueryCustomDropdown() throws Exception {
 	  driver.get("http://jqueryui.com/resources/demos/selectmenu/default.html");
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -70,7 +70,7 @@ public class Topic08_Handle_DropdownList{
 	  
 
   }
-//  @Test
+  @Test
   public void TC_03_angularCustomDropdown() throws Exception {
 	  driver.get("https://material.angular.io/components/select/examples ");
 	  selectItemInCustomDropdown("//mat-select[@placeholder='State']","//mat-option//span[@class='mat-option-text']","California");
@@ -84,7 +84,7 @@ public class Topic08_Handle_DropdownList{
 	  Thread.sleep(1000);
   }
   
-//  @Test
+ @Test
   public void TC_04_TelerikDropDownList() throws Exception {
 	  driver.get("https://demos.telerik.com/kendo-ui/dropdownlist/index ");
 	  selectItemInCustomDropdown("//span[@aria-labelledby='color_label']//span[contains(@class,'k-dropdown-wrap')]","//ul[@id='color_listbox']/li", 
@@ -107,7 +107,7 @@ public class Topic08_Handle_DropdownList{
 	  Thread.sleep(1000);
   }
   
-//  @Test
+ @Test
   public void TC_05_MekeroDropDownList() throws Exception {
 	  driver.get("https://mikerodham.github.io/vue-dropdowns/");
 	
@@ -121,7 +121,7 @@ public class Topic08_Handle_DropdownList{
 	  Assert.assertTrue(isElementDisplayed("//li[@class='dropdown-toggle' and contains(text(),'Third Option')]"));
 	  Thread.sleep(1000);
   }
-// @Test
+ @Test
 	  public void TC_06_indrimuskaDropDownList() throws Exception {
 	  driver.get("http://indrimuska.github.io/jquery-editable-select/");
 	  driver.findElement(By.xpath("//div[@id='default-place']//input[contains(@class,'es-input')]")).sendKeys("Audi");
@@ -129,7 +129,7 @@ public class Topic08_Handle_DropdownList{
 	  Assert.assertTrue(isPresent(By.xpath("//div[@id='default-place']//li[@class='es-visible' and contains(text(),'Audi')]")));
 	  Thread.sleep(1000);
 	  }
-//	 @Test
+ @Test
 	  public void TC_07_wenzhixinDropDownList() throws Exception {
 	  driver.get("http://multiple-select.wenzhixin.net.cn/examples/#basic.html ");
 	  By contentIframeXpath = By.xpath("//div[@class='content']//iframe");
@@ -149,7 +149,7 @@ public class Topic08_Handle_DropdownList{
 	  
 	  
 	  }
-//	 @Test
+ @Test
 	 public void TC_08_semantic_dropdownList() throws Exception {
 		 driver.get("https://semantic-ui.com/modules/dropdown.html ");
 		//Skill Multiple Selection
