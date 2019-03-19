@@ -27,13 +27,13 @@ public class Topic08_Handle_DropdownList{
  @BeforeTest
  public void beforeTest() {
 	 driver = new FirefoxDriver();
-	 waitExplicit = new WebDriverWait(driver,30);
+	 waitExplicit = new WebDriverWait(driver,60);
 	 javascriptExecutor = (JavascriptExecutor) driver;
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	 driver.manage().window().maximize();
 	 
 	  }
-  @Test
+//  @Test
   public void TC_01_HTMLDropDownList() {
 	  driver.get("https://daominhdam.github.io/basic-form/index.html");
 	  WebElement jobRole01 = driver.findElement(By.xpath("//select[@id= 'job1']"));
@@ -50,7 +50,7 @@ public class Topic08_Handle_DropdownList{
 	  Assert.assertEquals(5, jobRoleSelect.getOptions().size());
 	  
 	    }
-  @Test
+//  @Test
   public void TC_02_JqueryCustomDropdown() throws Exception {
 	  driver.get("http://jqueryui.com/resources/demos/selectmenu/default.html");
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -70,7 +70,7 @@ public class Topic08_Handle_DropdownList{
 	  
 
   }
-  @Test
+//  @Test
   public void TC_03_angularCustomDropdown() throws Exception {
 	  driver.get("https://material.angular.io/components/select/examples ");
 	  selectItemInCustomDropdown("//mat-select[@placeholder='State']","//mat-option//span[@class='mat-option-text']","California");
@@ -84,7 +84,7 @@ public class Topic08_Handle_DropdownList{
 	  Thread.sleep(1000);
   }
   
-  @Test
+//  @Test
   public void TC_04_TelerikDropDownList() throws Exception {
 	  driver.get("https://demos.telerik.com/kendo-ui/dropdownlist/index ");
 	  selectItemInCustomDropdown("//span[@aria-labelledby='color_label']//span[contains(@class,'k-dropdown-wrap')]","//ul[@id='color_listbox']/li", 
@@ -100,9 +100,14 @@ public class Topic08_Handle_DropdownList{
 	  selectItemInCustomDropdown("//span[@aria-labelledby='color_label']//span[contains(@class,'k-dropdown-wrap')]","//ul[@id='color_listbox']/li", 
 		  		"Grey");
 	  Assert.assertTrue(isElementDisplayed("//span[@aria-labelledby='color_label']//span[contains(@class,'k-dropdown-wrap')]/span[@class ='k-input' and text()='Grey']"));
+	  Thread.sleep(1000);
+	  selectItemInCustomDropdown("//span[@aria-labelledby='color_label']//span[contains(@class,'k-dropdown-wrap')]","//ul[@id='color_listbox']/li", 
+	  		"Black");
+	  Assert.assertTrue(isElementDisplayed("//span[@aria-labelledby='color_label']//span[contains(@class,'k-dropdown-wrap')]/span[@class ='k-input' and text()='Black']"));
+	  Thread.sleep(1000);
   }
   
-  @Test
+//  @Test
   public void TC_05_MekeroDropDownList() throws Exception {
 	  driver.get("https://mikerodham.github.io/vue-dropdowns/");
 	
@@ -116,7 +121,7 @@ public class Topic08_Handle_DropdownList{
 	  Assert.assertTrue(isElementDisplayed("//li[@class='dropdown-toggle' and contains(text(),'Third Option')]"));
 	  Thread.sleep(1000);
   }
- @Test
+// @Test
 	  public void TC_06_indrimuskaDropDownList() throws Exception {
 	  driver.get("http://indrimuska.github.io/jquery-editable-select/");
 	  driver.findElement(By.xpath("//div[@id='default-place']//input[contains(@class,'es-input')]")).sendKeys("Audi");
@@ -125,13 +130,47 @@ public class Topic08_Handle_DropdownList{
 	  Thread.sleep(1000);
 	  }
 //	 @Test
-//	  public void TC_07_wenzhixinDropDownList() throws Exception {
-//	  driver.get("http://wenzhixin.net.cn/p/multiple-select/docs/ ");
-//	  
-//	  
-//	  }
-//	  
+	  public void TC_07_wenzhixinDropDownList() throws Exception {
+	  driver.get("http://multiple-select.wenzhixin.net.cn/examples/#basic.html ");
+	  By contentIframeXpath = By.xpath("//div[@class='content']//iframe");
+	  String [] items = {"January","March", "April"};
+	  String[] newitems = {"January","March", "April","September","December"};
+	  
+	  WebElement contentIframe = driver.findElement(contentIframeXpath);
+	  driver.switchTo().frame(contentIframe);
+	  selectMutipleItems("//button[@class = 'ms-choice']","//div[@class='ms-drop bottom']//span",items);
+	  Assert.assertTrue(isSelectedItem(items));
+	  
+	  driver.navigate().refresh();
+	  WebElement contentIframeRefresh = driver.findElement(contentIframeXpath);
+	  driver.switchTo().frame(contentIframeRefresh);
+	  selectMutipleItems("//button[@class = 'ms-choice']","//div[@class='ms-drop bottom']//span",newitems);
+	  Assert.assertTrue(isSelectedItem(newitems));
+	  
+	  
+	  }
+//	 @Test
+	 public void TC_08_semantic_dropdownList() throws Exception {
+		 driver.get("https://semantic-ui.com/modules/dropdown.html ");
+		//Skill Multiple Selection
+		 String [] items = {"Kitchen Repair","Ruby"};
+		 selectMultipleSkills("//div[text()='Skills']/preceding::h4[text()='Multiple Selection']/following-sibling::div","//div[@class='menu transition visible']/div", items);
+		 Assert.assertTrue(isSkillSelected(items));
+		 //State Multiple Selecttion
+		 
+		
+	 }
+	 @Test
+	public void TC_09_SelectMultipleCountry() throws Exception {
+		 driver.get("https://semantic-ui.com/modules/dropdown.html "); 
+		 String [] countries = {"Aland Islands","Algeria","Andorra"};
+		 selectMultipleCountry("//div[text()='Select Country']/parent::div[@class='ui fluid multiple search selection dropdown']","//div[@class='menu transition visible']/div[@class='item']",countries);
+		
+		 Assert.assertTrue(isCountrySelected(countries));
+	 }
+	  
   
+
   public void selectItemInCustomDropdown(String parentXpath, String allItemXpath, String expectedValueItem) throws InterruptedException  {
 	
 	  WebElement parentDropdown = driver.findElement(By.xpath(parentXpath));
@@ -147,8 +186,13 @@ public class Topic08_Handle_DropdownList{
 		  if (allItems.get(i).getText().equals(expectedValueItem)){
 			  javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);", allItems.get(i));
 			  Thread.sleep(1500);
-			  //javascriptExecutor.executeScript("arguments[0].click();", allItems.get(i));
-			 allItems.get(i).click();
+//			  javascriptExecutor.executeScript("arguments[0].click();", allItems.get(i));
+			 if( allItems.get(i).isDisplayed()) {
+					 allItems.get(i).click();
+			 } else {
+				 javascriptExecutor.executeScript("arguments[0].click();", allItems.get(i));
+			 }
+			 
 			  break;
 		  }
 	  }
@@ -162,7 +206,103 @@ public class Topic08_Handle_DropdownList{
 //		  }
 //	  }
   }
+  public void selectMutipleItems (String parentXpath, String allItemsXpath, String[] expectedValues) throws Exception {
+	  WebElement  parentDropdown = driver.findElement(By.xpath(parentXpath));
+	  javascriptExecutor.executeScript("arguments[0].click();",parentDropdown );
+	  waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemsXpath)));
+	  List <WebElement> allItems = driver.findElements(By.xpath(allItemsXpath));
+	  for (WebElement childELement: allItems) {
+		  for( String item: expectedValues) {
+			   if (childELement.getText().equals(item)) {
+				   javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);",childELement );
+				   Thread.sleep(1000);
+				   if(childELement.isDisplayed()) {
+					   childELement.click();
+				   }
+					   else {
+						   javascriptExecutor.executeScript("arguments[0].click();",childELement );
+					   }
+				   Thread.sleep(1000);
+				   List  <WebElement> selectedItems = driver.findElements(By.xpath("//li[@class='selected']//span"));
+				   
+				   if(expectedValues.length== selectedItems.size()) {
+					   break;
+					   
+					  }
+				   
+				   }
+				   
+				   
+			   }
+		  }
+	  }
+	  
+	  
+		  
 
+  public void selectMultipleSkills(String parentXpath, String allItemsXpath, String[] expectedValues) throws Exception {
+	  WebElement  parentDropdown = driver.findElement(By.xpath(parentXpath));
+	  javascriptExecutor.executeScript("arguments[0].click();",parentDropdown );
+	  waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemsXpath)));
+	  List <WebElement> allItems = driver.findElements(By.xpath(allItemsXpath));
+	  for (WebElement childELement: allItems) {
+		  for( String item: expectedValues) {
+			   if (childELement.getText().equals(item)) {
+				   javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);",childELement );
+				   Thread.sleep(1000);
+				   if(childELement.isDisplayed()) {
+					   childELement.click();
+				   }
+					   else {
+						   javascriptExecutor.executeScript("arguments[0].click();",childELement );
+					   }
+				   Thread.sleep(1000);
+				   List  <WebElement> selectedItemsonBox = driver.findElements(By.xpath("//div[text()='Skills']/preceding::h4[text()='Multiple Selection']/following-sibling::div//a"));
+//				   List <WebElement> selectedCountryOnBox = driver.findElements(By.xpath("//div[@class='ui fluid multiple search selection dropdown upward active visible']/a/i[contains(@class,'flag')]"));
+				   if(expectedValues.length== selectedItemsonBox.size()) {
+					   break;
+					   
+					  }
+//				   else if(expectedValues.length== selectedCountryOnBox.size()){
+//					   break;
+//					   
+//				   }
+				   }
+				   
+				   
+			   }
+		  }
+	  }
+  public void selectMultipleCountry(String parentXpath, String allItemsXpath, String[] expectedValues) throws Exception {
+	  WebElement  parentDropdown = driver.findElement(By.xpath(parentXpath));
+	  javascriptExecutor.executeScript("arguments[0].click();",parentDropdown );
+	  waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemsXpath)));
+	  List <WebElement> allItems = driver.findElements(By.xpath(allItemsXpath));
+	  for (WebElement childELement: allItems) {
+		  for( String item: expectedValues) {
+			   if (childELement.getText().equals(item)) {
+				   javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);",childELement );
+				   Thread.sleep(1000);
+				   if(childELement.isDisplayed()) {
+					   childELement.click();
+				   }
+					   else {
+						   javascriptExecutor.executeScript("arguments[0].click();",childELement );
+					   }
+				   Thread.sleep(1000);
+
+				   List <WebElement> selectedCountryOnBox = driver.findElements(By.xpath("//div[@class = 'ui fluid multiple search selection dropdown active visible']//a[@class='ui label']"));
+				  
+				   if(expectedValues.length== selectedCountryOnBox.size()){
+					   break;
+					   
+				   }
+				   }
+				   
+				   
+			   }
+		  }
+	  }  
   
   
  public boolean isElementDisplayed(String xpathValue) {
@@ -171,6 +311,7 @@ public class Topic08_Handle_DropdownList{
 		 return true;	 
 	 }
 	 else {
+		 
 		 return false;
 	 }
  }
@@ -185,9 +326,59 @@ public class Topic08_Handle_DropdownList{
 			return false;
 		}
 	}
+ public boolean isSelectedItem(String[] itemSelectedText) {
+	 List<WebElement> selectedItems = driver.findElements(By.xpath("//li[@class='selected']//span"));
+	 int numberOfElements = selectedItems.size();
+	 String allSelectedText = driver.findElement(By.xpath("//button[@class='ms-choice']//span")).getText();
+	 
+	 if(numberOfElements<=3 && numberOfElements>0) {
+		 for (String item : itemSelectedText) {
+			 if (allSelectedText.contains(item)) {
+				 break;
+			 }
+		 }
+		 return true;
+	 }
+	 else {
+		 return driver.findElement(By.xpath("//button[@class='ms-choice']//span[text()='" + numberOfElements+" of 12 selected']")).isDisplayed();
+	 }
+ 
+ }
+ public boolean isSkillSelected(String[] selectedSkills) {
+	 List<WebElement> selectedItems = driver.findElements(By.xpath("//div[@class='menu transition visible']/div[@class='item active filtered']"));
+	 int numberOfElements = selectedItems.size();
+	 String allSelectedText = driver.findElement(By.xpath("//div[text()='Skills']/preceding::h4[text()='Multiple Selection']/following-sibling::div//a")).getText(); 
+	 if (numberOfElements>0) {
+	 for (String item : selectedSkills) {
+	  if(allSelectedText.contains(item)) {
+		  break;
+	  }
+	 }
+	 return true;
+ }
+	 else {
+		 return false;
+	 }
+ }
+ public boolean isCountrySelected(String[] selectedcountries) {
+	 List<WebElement> selectedItems = driver.findElements(By.xpath("//div[@class='menu transition visible']/div[@class='item active filtered']"));
+	 int numberOfElements = selectedItems.size();
+	 String allSelectedText = driver.findElement(By.xpath("//div[text()='Select Country']/parent::div[@class='ui fluid multiple search selection dropdown']//a[@class='ui label transition visible']")).getText(); 
+	 if (numberOfElements>0) {
+	 for (String item : selectedcountries) {
+	  if(allSelectedText.contains(item)) {
+		  break;
+	  }
+	 }
+	 return true;
+ }
+	 else {
+		 return false;
+	 }
+ }
   @AfterTest
   public void afterTest() {
-	  driver.quit();
+	  driver.quit();  	 	 	
   }
 
 }
