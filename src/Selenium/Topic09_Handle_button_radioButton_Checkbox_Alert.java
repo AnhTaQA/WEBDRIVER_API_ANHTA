@@ -98,20 +98,29 @@ public class Topic09_Handle_button_radioButton_Checkbox_Alert{
 		Assert.assertEquals(message, "You clicked: Cancel");
 		
 	}
-	@Test
+	//@Test
 	public void TC_06_CheckJsPrompt(){
 		driver.get("https://daominhdam.github.io/basic-form/index.html");
+		String textInput = "I am a tester";
 		WebElement jsAlert = driver.findElement(By.xpath("//button[text()='Click for JS Prompt']"));
 		jsAlert.click();
 		Alert alert = driver.switchTo().alert();
 		String textOnAlert = alert.getText();
 		Assert.assertEquals(textOnAlert, "I am a JS prompt");
-		alert.sendKeys("I am a tester");
+		alert.sendKeys(textInput);
+		alert.accept();
 		String message = driver.findElement(By.xpath("//h4[text()='Result:']/following-sibling::p")).getText();
-		Assert.assertEquals(message, "You entered: I am a tester");
+		Assert.assertEquals(message, "You entered: " + textInput);
 			
 	}
-	
+	@Test
+	public void TC_07_CheckAuthentication() {
+		driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
+		WebElement sucessfulMessage = driver.findElement(By.xpath("//p[contains(text(),'Congratulations! You must have the proper credenti')]"));
+		
+		Assert.assertTrue(sucessfulMessage.isDisplayed());
+		
+	}
  public void checktoCheckBox(By byValue) {
 	WebElement element = driver.findElement( byValue);
 	if (!element.isSelected()) {
