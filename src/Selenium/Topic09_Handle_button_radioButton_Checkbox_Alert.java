@@ -31,7 +31,7 @@ public class Topic09_Handle_button_radioButton_Checkbox_Alert{
 	 driver.manage().window().maximize();
 	
 	  }
-// @Test
+ @Test
   public void TC_01_CheckURL() {
 	  driver.get("http://live.guru99.com/");
 	  WebElement myAccountLink = driver.findElement(By.xpath("//div[@class='footer']//a[text()='My Account']"));
@@ -46,7 +46,7 @@ public class Topic09_Handle_button_radioButton_Checkbox_Alert{
 	  
 	  
   }
- // @Test
+  @Test
   public void TC_02_ChecktoCheckbox() {
 	  driver.get("http://demos.telerik.com/kendo-ui/styling/checkboxes");
 	  
@@ -58,7 +58,7 @@ public class Topic09_Handle_button_radioButton_Checkbox_Alert{
 	  
 	  
   }
-	//@Test
+	@Test
 	public void TC_03_CheckRadioButton(){
 		driver.get("http://demos.telerik.com/kendo-ui/styling/radios");
 		WebElement petrol147kW = driver.findElement(By.xpath("//label[text()= '2.0 Petrol, 147kW']/preceding-sibling::input"));
@@ -71,7 +71,7 @@ public class Topic09_Handle_button_radioButton_Checkbox_Alert{
 		}
 	}
 	  
-	//@Test
+	@Test
 	public void TC_04_CheckJsAlert(){
 		driver.get("https://daominhdam.github.io/basic-form/index.html");
 		WebElement jsAlert = driver.findElement(By.xpath("//button[text()='Click for JS Alert']"));
@@ -85,7 +85,7 @@ public class Topic09_Handle_button_radioButton_Checkbox_Alert{
 		
 		
 	}
-	//@Test
+	@Test
 	public void TC_05_CheckJsConfirm(){
 		driver.get("https://daominhdam.github.io/basic-form/index.html");
 		WebElement jsAlert = driver.findElement(By.xpath("//button[text()='Click for JS Confirm']"));
@@ -98,7 +98,7 @@ public class Topic09_Handle_button_radioButton_Checkbox_Alert{
 		Assert.assertEquals(message, "You clicked: Cancel");
 		
 	}
-	//@Test
+	@Test
 	public void TC_06_CheckJsPrompt(){
 		driver.get("https://daominhdam.github.io/basic-form/index.html");
 		String textInput = "I am a tester";
@@ -117,7 +117,7 @@ public class Topic09_Handle_button_radioButton_Checkbox_Alert{
 	public void TC_07_CheckAuthentication() {
 		driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
 		WebElement sucessfulMessage = driver.findElement(By.xpath("//p[contains(text(),'Congratulations! You must have the proper credenti')]"));
-		
+
 		Assert.assertTrue(sucessfulMessage.isDisplayed());
 		
 	}
