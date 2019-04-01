@@ -47,7 +47,7 @@ public class Topic11_Handle_Frame_Iframe{
 //		  javaExecutor.executeScript("arguments[0].click();", closeButton);
 //		  driver.switchTo().defaultContent();  
 //	  }
-	  List <WebElement> popupBanner = driver.findElements(By.xpath("//img[@class='popupbanner']"));
+	  List <WebElement> popupBanner = driver.findElements(By.xpath("//img[contains(@class,'popupbanner')]"));
 	  
 	 if(popupBanner.size()>0) {
 		 System.out.println("pop-up Banner "+popupBanner.size());
@@ -125,7 +125,7 @@ public void TC_03_CheckMutiWindow() throws Exception {
 	Thread.sleep(2000);
 	
 	  
-	List <WebElement> popupBanner = driver.findElements(By.xpath("//img[@class='popupbanner']"));
+	List <WebElement> popupBanner = driver.findElements(By.xpath("//img[contains(@class,'popupbanner')]"));
 	  
 	 if(popupBanner.size()>0) {
 		 System.out.println("pop-up Banner "+popupBanner.size());
