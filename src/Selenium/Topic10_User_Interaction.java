@@ -25,14 +25,14 @@ public class Topic10_User_Interaction{
  @BeforeTest
  public void beforeTest() {
   driver = new FirefoxDriver();
-//	 System.setProperty("webdriver.chrome.driver", "\\lib\\chromedriver.exe");
+//	 System.setProperty("webdriver.chrome.driver", "lib\\chromedriver.exe");
 //	 driver = new ChromeDriver();
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	 driver.manage().window().maximize();
 	 action = new Actions(driver);
 
 	  }
-//  @Test
+ @Test
   public void TC_01_MoveMouseToElement() {
 
 	  driver.get("http://www.myntra.com/");
@@ -46,7 +46,7 @@ public class Topic10_User_Interaction{
 	  
 	  
   }
-//  @Test
+ @Test
   public void TC_02_ClickAndHoldElemennt() {
 	  driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 	  List <WebElement> listItems = driver.findElements(By.xpath("//ol[@id='selectable']/li"));
@@ -56,7 +56,7 @@ public class Topic10_User_Interaction{
 	  int numberOfselectedItem = selectedItems.size();
 	  Assert.assertEquals(4, numberOfselectedItem);
   }
-//  @Test
+  @Test
   public void TC_03_DoubleClick() {  
 
 	  driver.get("http://www.seleniumlearn.com/double-click");
@@ -67,7 +67,7 @@ public class Topic10_User_Interaction{
 	  Assert.assertEquals("The Button was double-clicked.", alertMessage);
 	  alert.accept();
   }
-//  @Test
+  @Test
   public void TC_04_RightClick() {  
 
 	  driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
@@ -81,9 +81,6 @@ public class Topic10_User_Interaction{
   }
   @Test
   public void TC_05_DragAndDropElement() throws Exception {  
-//	  Step 01 - Truy cập vào trang: http://demos.telerik.com/kendo-ui/dragdrop/angular
-//		  Step 02 - Kéo hình tròn nhỏ vào hình tròn lớn
-//		  Step 03 - Verify message đã thay đổi: You did great!
 	  driver.get("http://demos.telerik.com/kendo-ui/dragdrop/angular");
 	  WebElement smallCircle = driver.findElement(By.xpath("//div[@id = 'draggable']"));
 	  WebElement bigCircle = driver.findElement(By.xpath("//div[@id = 'droptarget']"));

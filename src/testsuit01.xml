@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Selenium webdriver api" parallel="tests" thread-count = "3">
+<parameter name = "username" value = "auto_test_05@gmail.com"/>
+<parameter name = "password" value = "123123"/>
+
+
+  <test name="Run test case on Chrome browser">
+  <parameter name = "browser" value = "chrome"/>
+    <classes>
+      <class name="TestNG.Multibrowser"/>
+    </classes>
+     </test> 
+    
+   
+</suite> 

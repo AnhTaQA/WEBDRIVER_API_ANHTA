@@ -65,7 +65,7 @@ public class Topic13_Upload_Files{
 	 driver.manage().window().maximize();
 	
 	  }
-// @Test
+ @Test
   public void TC_01_UploadFileBySendkeys_UploadInquee() throws Exception {
 //	  Step 01 - Truy cập vào trang: 
 //		  http://blueimp.github.com/jQuery-File-Upload/
@@ -109,7 +109,7 @@ public class Topic13_Upload_Files{
 
 	
   }
-// @Test
+ @Test
   public void TC_02_UploadMultipleFiles() throws Exception {
 	  driver.get("http://blueimp.github.com/jQuery-File-Upload/");
 	  WebElement uploadFileButton = driver.findElement(By.xpath("//input[@name='files[]']"));
@@ -130,7 +130,8 @@ public class Topic13_Upload_Files{
 		 Assert.assertTrue(driver.findElement(By.xpath("//a[text()='"+fileName02+"']")).isDisplayed());
 		 Assert.assertTrue(driver.findElement(By.xpath("//a[text()='"+fileName03+"']")).isDisplayed());
   }
-//  @Test
+ @Test
+
   public void TC_03_Upload_file_by_AutoIT () throws Exception {
 	  driver.get("http://blueimp.github.com/jQuery-File-Upload/");
 //	  Step 01 - Truy cập vào trang:
@@ -170,7 +171,7 @@ public class Topic13_Upload_Files{
 	 Assert.assertTrue(driver.findElement(By.xpath("//a[text()='"+fileName02+"']")).isDisplayed());
 	 Assert.assertTrue(driver.findElement(By.xpath("//a[text()='"+fileName03+"']")).isDisplayed()); 
 }
-//  @Test
+ @Test
   public void TC_04_Upload_Files_By_Robot() throws Exception {
 
 //	  Step 01 - Truy cập vào trang:
@@ -187,13 +188,13 @@ public class Topic13_Upload_Files{
 		  WebElement uploadFileButton = driver.findElement(By.xpath("//input[@name='files[]']"));  
 		  jsExecutor.executeScript("arguments[0].click();", uploadFileButton);
 		  Thread.sleep(2000);
-	  }
+	      }
 		  
 	  else {
 		 WebElement uploadFileButton = driver.findElement(By.cssSelector(".fileinput-button"));
 	  uploadFileButton.click();
 	  Thread.sleep(2000);
-       }
+          }
       
 	  
 	  Robot robot = new Robot();

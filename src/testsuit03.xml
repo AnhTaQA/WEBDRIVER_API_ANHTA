@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Selenium webdriver api" parallel="tests" thread-count = "3">
+<parameter name = "username" value = "auto_test_05@gmail.com"/>
+<parameter name = "password" value = "123123"/>
+
+
+  <suite-files>
+      <suite-file  path = "testsuit01.xml"/>
+      <suite-file  path = "testsuit02.xml"/>
+  </suite-files>
+</suite> 
