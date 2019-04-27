@@ -99,7 +99,7 @@ public void TC_02_CheckCloseWindow() {
 	String parentTitle = driver.getTitle();
 	WebElement clickHereLink = driver.findElement(By.xpath("//a[text()='Click Here']"));
 	clickHereLink.click();
-	switchToChildWindow(parentID);
+	switchToChildWindowByID(parentID);
 	String tiltle = driver.getTitle();
 	Assert.assertEquals(tiltle, "Google");
 	driver.close();
@@ -107,7 +107,7 @@ public void TC_02_CheckCloseWindow() {
 	Assert.assertEquals(parentTitle, "SELENIUM WEBDRIVER FORM DEMO");
 	
 }
-public void switchToChildWindow(String parentID) {
+public void switchToChildWindowByID(String parentID) {
 	Set<String> allWindowID = driver.getWindowHandles();
 	for(String childID:allWindowID) {
 		if(!childID.equals(parentID)) {
@@ -213,7 +213,7 @@ public void TC_04() {
 //		Step 05 - Click to Compare button
 	driver.findElement(By.xpath("//button[@title = 'Compare']")).click();
 //		Step 06 - Switch qa cửa sổ mới (chứa 2 sản phẩm đã được Add vào để Compare)
-	switchToChildWindow(ParentID);
+	switchToChildWindowByID(ParentID);
 //		Step 07 - Verify title của cửa sổ bằng: Products Comparison List - Magento Commerce
 	String compareWindowTitle = driver.getTitle();
 	Assert.assertEquals(compareWindowTitle, "Products Comparison List - Magento Commerce");
