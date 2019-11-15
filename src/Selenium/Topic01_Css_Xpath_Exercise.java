@@ -21,6 +21,7 @@ public class Topic01_Css_Xpath_Exercise{
 	
  @BeforeTest
  public void beforeTest() throws Exception {
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\anhtt\\Desktop\\Software\\geckodriver-v0.26.0-win64\\geckodriver.exe");
 	 driver = new FirefoxDriver();
 	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	 driver.manage().window().maximize();

@@ -156,7 +156,8 @@ public void TC_03_CheckMutiWindow() throws Exception {
 	 accountDetails.click();
 	 switchToWindowByTitle("Welcome to HDFC Bank NetBanking");
 //		Step 05- Click Privacy Policy link (nằm trong frame) -> Mở ra tab/window mới -> Switch qua tab mới
-	 driver.switchTo().frame(driver.findElement(By.xpath("//frame[@src='footer.html']")));
+	 WebElement frame1 = driver.findElement(By.xpath("//frame[@src='footer.html']"));
+	 driver.switchTo().frame(frame1);
 	 driver.findElement(By.xpath("//a[text()='Privacy Policy']")).click();
 //	 Step 06- Click CSR link on Privacy Policy page
 	 
