@@ -28,7 +28,7 @@ public class ChuaBai05_06{
 	 driver.get("http://live.guru99.com/");
 	  Thread.sleep(2000);
 	  }
-//  @Test
+  @Test
   public void TC_05_LogInWithCorrectAccount() throws Exception  {
 	  
 	  driver.findElement(By.xpath("//div[@class='footer']//a[contains(text(),'My Account')]")).click();
